@@ -3,6 +3,10 @@ import {connect} from 'react-redux'
 import axios from 'axios'
 import ScrollToTop from '../client/container/layout/ScrollToTop'
 import TheLayout from '../client/container/layout/root/TheLayout'
+import {Route, Switch} from "react-router-dom";
+import routes from "./routes";
+import PrivateRoute from "../client/routers/PrivateRoute";
+import NotMatch from "../client/container/pages/notfound/NotMatch";
 
 const App = ({name,_csrf,auth})=> {
   const [count,setCount] = useState(0)
@@ -16,12 +20,13 @@ const App = ({name,_csrf,auth})=> {
       })
   }
   return (
-        <div>
+        <React.Fragment>
           <ScrollToTop>
-            <TheLayout/>
+              <Route path={'/'}>
+                  <TheLayout/>
+              </Route>
           </ScrollToTop>
-
-        </div>
+        </React.Fragment>
   )
 }
 

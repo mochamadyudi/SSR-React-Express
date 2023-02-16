@@ -8,13 +8,51 @@ const routes = [
     exact: true,
     isAuth: true,
     component: Home,
-    fetchInitialData:(path = '')=> getNIK(path.split('/').pop())
+    fetchInitialData:(path = '')=> {
+          return new Promise((resolve)=> {
+            resolve({
+              meta_data:{
+                title:"Home",
+                description:"Lorem ipsum dolor sit amet",
+                canonical: "http://localhost:4000/"
+              }
+            })
+          })
+    }
+  },
+  {
+    path:'/home',
+    exact: true,
+    isAuth: true,
+    component: Home,
+    fetchInitialData:(path = '')=> {
+      return new Promise((resolve)=> {
+        resolve({
+          meta_data: {
+            title: "Home Page",
+            description: "Lorem ipsum dolor sit amet",
+            canonical: "http://localhost:4000/home"
+          }
+        })
+      })
+    }
   },
   {
     path:'/login',
     exact: true,
     isAuth: false,
-    component: Login
+    component: Login,
+    fetchInitialData:(path = '')=> {
+      return new Promise((resolve)=> {
+        resolve({
+          meta_data: {
+            title: "Login Page",
+            description: "Lorem ipsum dolor sit amet",
+            canonical: "http://localhost:4000/login"
+          }
+        })
+      })
+    }
   }
 ]
 

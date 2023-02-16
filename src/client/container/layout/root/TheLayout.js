@@ -1,42 +1,25 @@
-import React from 'react'
-import routes from '../../../../shared/routes'
-import { Redirect, Route, Switch } from 'react-router-dom'
-import {connect} from 'react-redux'
-import PropTypes from 'prop-types'
-import Topbar from '../topbar/Topbar'
-import PrivateRoute from '../../../routers/PrivateRoute'
+import React, {lazy, useEffect} from 'react'
+import { Redirect, Route, Switch } from 'react-router-dom';
 import NotMatch from '../../pages/notfound/NotMatch'
-const TheLayout = ({auth})=> {
+import Home from "../../pages/home/Home";
+import Login from "../../pages/login/Login";
+import routes from "../../../../shared/routes";
+const TheLayout = ()=> {
+
   return(
-    <div>
-      {
-        auth.isAuthenticated && (
-          <Topbar/>
-        )
-      }
+    <React.Fragment>
       <Switch>
         {
           routes.map(({path, exact, component: C,rest,isAuth})=> (
-            !isAuth ?
-            <Route key={path} path={path} exact={exact} render={(props)=>{
-              return(
-                <C {...props} {...rest}/>
-              )
-            }}/>:
-              <PrivateRoute key={path} path={path} exact={exact} component={C}/>
-          ))
+              <Route key={path} path={path} exact={exact} render={(props)=>{
+                  return(
+                      <C {...props} {...rest}/>
+                  )
+              }}/>))
         }
         <Route component={NotMatch}/>
       </Switch>
-    </div>
+    </React.Fragment>
   )
 }
-
-
-TheLayout.propTypes = {
-
-}
-const mapStateToProps = state => ({
-  auth: state.auth
-})
-export default connect(mapStateToProps, {})(TheLayout)
+export default TheLayout

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -73,25 +73,50 @@ module.exports = require("react");
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-redux");
+module.exports = require("react-router-dom");
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {
 
-module.exports = require("axios");
+module.exports = require("react-redux");
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-router-dom");
+module.exports = require("axios");
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = require("prop-types");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var NotMatch = function NotMatch() {
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'h1',
+      null,
+      'Not Found'
+    )
+  );
+};
+
+exports.default = NotMatch;
 
 /***/ }),
 /* 5 */
@@ -104,15 +129,143 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Home = __webpack_require__(14);
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactHelmet = __webpack_require__(17);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var Home = function Home(props) {
+  var _useState = (0, _react.useState)({ data: [{ nama_lengkap: "Mochamad Yudi" }, { nama_lengkap: "John Doe" }] }),
+      _useState2 = _slicedToArray(_useState, 2),
+      data = _useState2[0],
+      setData = _useState2[1];
+
+  var _useState3 = (0, _react.useState)({
+    nama_lengkap: 'TTESTINF'
+  }),
+      _useState4 = _slicedToArray(_useState3, 2),
+      formdata = _useState4[0],
+      setFormdata = _useState4[1];
+
+  var handleChange = function handleChange(e) {
+    return setFormdata(_defineProperty({ formdata: formdata }, e.target.name, e.target.value));
+  };
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    // setData(setData)
+  };
+
+  return _react2.default.createElement(
+    _react2.default.Fragment,
+    null,
+    _react2.default.createElement(
+      "div",
+      null,
+      _react2.default.createElement(
+        "h1",
+        null,
+        "SEARCH DATA"
+      ),
+      _react2.default.createElement(
+        "form",
+        { onSubmit: handleSubmit },
+        _react2.default.createElement("input", { type: "text", name: "nama_lengkap", onChange: handleChange }),
+        _react2.default.createElement(
+          "button",
+          { type: "submit" },
+          "Submit"
+        )
+      )
+    ),
+    Object.keys(data).length > 0 && data.data.map(function (item, index) {
+      return _react2.default.createElement(
+        "p",
+        { key: index },
+        " ",
+        item.nama_lengkap
+      );
+    })
+  );
+};
+Home.propTypes = {
+  // children: PropTypes.element.isRequired
+};
+exports.default = Home;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = __webpack_require__(18);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Login = function Login() {
+    var history = (0, _reactRouter.useHistory)();
+    var onClick = function onClick() {
+        if (typeof window !== 'undefined') {
+            if (typeof window.localStorage !== 'undefined') {
+                window.localStorage.setItem('token', 'testing');
+                history.replace('/');
+            }
+        }
+    };
+    return _react2.default.createElement(
+        'div',
+        { className: 'w-full' },
+        _react2.default.createElement(
+            'h1',
+            null,
+            'Login'
+        ),
+        _react2.default.createElement(
+            'button',
+            { onClick: onClick },
+            'click me is login'
+        )
+    );
+};
+
+exports.default = Login;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Home = __webpack_require__(5);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _Login = __webpack_require__(15);
+var _Login = __webpack_require__(6);
 
 var _Login2 = _interopRequireDefault(_Login);
 
-var _api = __webpack_require__(16);
+var _api = __webpack_require__(19);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -123,43 +276,83 @@ var routes = [{
   component: _Home2.default,
   fetchInitialData: function fetchInitialData() {
     var path = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-    return (0, _api.getNIK)(path.split('/').pop());
+
+    return new Promise(function (resolve) {
+      resolve({
+        meta_data: {
+          title: "Home",
+          description: "Lorem ipsum dolor sit amet",
+          canonical: "http://localhost:4000/"
+        }
+      });
+    });
+  }
+}, {
+  path: '/home',
+  exact: true,
+  isAuth: true,
+  component: _Home2.default,
+  fetchInitialData: function fetchInitialData() {
+    var path = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+    return new Promise(function (resolve) {
+      resolve({
+        meta_data: {
+          title: "Home Page",
+          description: "Lorem ipsum dolor sit amet",
+          canonical: "http://localhost:4000/home"
+        }
+      });
+    });
   }
 }, {
   path: '/login',
   exact: true,
   isAuth: false,
-  component: _Login2.default
+  component: _Login2.default,
+  fetchInitialData: function fetchInitialData() {
+    var path = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+    return new Promise(function (resolve) {
+      resolve({
+        meta_data: {
+          title: "Login Page",
+          description: "Lorem ipsum dolor sit amet",
+          canonical: "http://localhost:4000/login"
+        }
+      });
+    });
+  }
 }];
 
 exports.default = routes;
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = require("redux");
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _express = __webpack_require__(8);
+var _express = __webpack_require__(10);
 
 var _express2 = _interopRequireDefault(_express);
 
-var _cors = __webpack_require__(9);
+var _cors = __webpack_require__(11);
 
 var _cors2 = _interopRequireDefault(_cors);
 
-var _server = __webpack_require__(10);
+var _server = __webpack_require__(12);
 
 var _server2 = _interopRequireDefault(_server);
 
-var _App = __webpack_require__(11);
+var _App = __webpack_require__(13);
 
 var _App2 = _interopRequireDefault(_App);
 
@@ -167,43 +360,47 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _csurf = __webpack_require__(20);
+var _csurf = __webpack_require__(21);
 
 var _csurf2 = _interopRequireDefault(_csurf);
 
-var _expressSession = __webpack_require__(21);
+var _expressSession = __webpack_require__(22);
 
 var _expressSession2 = _interopRequireDefault(_expressSession);
 
-var _bodyParser = __webpack_require__(22);
+var _bodyParser = __webpack_require__(23);
 
 var _bodyParser2 = _interopRequireDefault(_bodyParser);
 
-var _cookieParser = __webpack_require__(23);
+var _cookieParser = __webpack_require__(24);
 
 var _cookieParser2 = _interopRequireDefault(_cookieParser);
 
-var _serializeJavascript = __webpack_require__(24);
+var _serializeJavascript = __webpack_require__(25);
 
 var _serializeJavascript2 = _interopRequireDefault(_serializeJavascript);
 
-var _crypto = __webpack_require__(25);
+var _crypto = __webpack_require__(26);
 
-var _expressValidator = __webpack_require__(26);
+var _expressValidator = __webpack_require__(27);
 
-var _reactRouterDom = __webpack_require__(3);
+var _reactRouterDom = __webpack_require__(1);
 
-var _routes = __webpack_require__(5);
+var _routes = __webpack_require__(7);
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _axios = __webpack_require__(2);
+var _axios = __webpack_require__(3);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _reactRedux = __webpack_require__(1);
+var _reactRedux = __webpack_require__(2);
 
-var _store = __webpack_require__(27);
+var _store = __webpack_require__(28);
+
+var _concurrently = __webpack_require__(33);
+
+var _reactHelmet = __webpack_require__(17);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -233,48 +430,59 @@ app.use(function (req, res, next) {
   next();
 });
 app.use(_express2.default.static('public'));
-app.post('/', [(0, _expressValidator.check)("csrf", "csrf is required").not().isEmpty()], function (req, res) {
-  var errors = (0, _expressValidator.validationResult)(req);
-  // check for errors
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
+// app.post('/',
+//   [
+//     check("csrf", "csrf is required").not().isEmpty(),
+//   ],(req,res)=> {
+//     const errors = validationResult(req);
+//     // check for errors
+//     if (!errors.isEmpty()) {
+//       return res.status(400).json({errors: errors.array()});
+//     }
+//
+//     const {
+//       csrf
+//     } = req.body;
+//   if (csrf !== req.session.csrf) {
+//     return res.status(403).json({msg:"Forbiden 403"});
+//   }else{
+//     return res.send(`CSRF Match`);
+//   }
+//
+// })
+//
+// app.post('/ktp', (req,res)=> {
+//   let {nik} = req.body
+//   axios.post('http://localhost:8000/ktp/profile',{nik:nik},{
+//     headers:{
+//       "Authorization":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvbG9naW4iLCJpYXQiOjE2MTA0NDY4NjksImV4cCI6MTYxOTA4Njg2OSwibmJmIjoxNjEwNDQ2ODY5LCJqdGkiOiJ0ZE9MRXg5UlV4UThaN3JaIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.T-fZww9c0Nwxw7VAUNlxnxnOZFMQzkuHLGfGrIfLOcU"
+//     }
+//   })
+//     .then((response)=> {
+//       res.send(`
+//         <div>
+//           <p>${response.data.nama_lengkap}</p>
+//         </div>
+//       `)
+//     })
+//     .catch((err)=> {
+//       return res.json([])
+//     })
+// })
+//
+// app.post('/advanced', (req, res)=> {
+//   let {nama_lengkap} = req.body
+//   axios.post('http://localhost:8000/ktp/search',{
+//     nama_lengkap:nama_lengkap,
+//     nama_lengkap_method: "LIKE"
+//   },{headers:{
+//     "Authorization":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvbG9naW4iLCJpYXQiOjE2MTA0NDY4NjksImV4cCI6MTYxOTA4Njg2OSwibmJmIjoxNjEwNDQ2ODY5LCJqdGkiOiJ0ZE9MRXg5UlV4UThaN3JaIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.T-fZww9c0Nwxw7VAUNlxnxnOZFMQzkuHLGfGrIfLOcU"
+//     }})
+//     .then((response)=> {
+//       res.json(response.data)
+//     })
+// })
 
-  var csrf = req.body.csrf;
-
-  if (csrf !== req.session.csrf) {
-    return res.status(403).json({ msg: "Forbiden 403" });
-  } else {
-    return res.send('CSRF Match');
-  }
-});
-
-app.post('/ktp', function (req, res) {
-  var nik = req.body.nik;
-
-  _axios2.default.post('http://localhost:8000/ktp/profile', { nik: nik }, {
-    headers: {
-      "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvbG9naW4iLCJpYXQiOjE2MTA0NDY4NjksImV4cCI6MTYxOTA4Njg2OSwibmJmIjoxNjEwNDQ2ODY5LCJqdGkiOiJ0ZE9MRXg5UlV4UThaN3JaIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.T-fZww9c0Nwxw7VAUNlxnxnOZFMQzkuHLGfGrIfLOcU"
-    }
-  }).then(function (response) {
-    res.send('\n        <div>\n          <p>' + response.data.nama_lengkap + '</p>\n        </div>\n      ');
-  }).catch(function (err) {
-    return res.json([]);
-  });
-});
-
-app.post('/advanced', function (req, res) {
-  var nama_lengkap = req.body.nama_lengkap;
-
-  _axios2.default.post('http://localhost:8000/ktp/search', {
-    nama_lengkap: nama_lengkap,
-    nama_lengkap_method: "LIKE"
-  }, { headers: {
-      "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvbG9naW4iLCJpYXQiOjE2MTA0NDY4NjksImV4cCI6MTYxOTA4Njg2OSwibmJmIjoxNjEwNDQ2ODY5LCJqdGkiOiJ0ZE9MRXg5UlV4UThaN3JaIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.T-fZww9c0Nwxw7VAUNlxnxnOZFMQzkuHLGfGrIfLOcU"
-    } }).then(function (response) {
-    res.json(response.data);
-  });
-});
 app.get('*', function (req, res, next) {
   var activeRoute = _routes2.default.find(function (route) {
     return (0, _reactRouterDom.matchPath)(req.url, route);
@@ -287,20 +495,36 @@ app.get('*', function (req, res, next) {
       req.session.csrf = (0, _crypto.randomBytes)(100).toString('hex');
     }
     var _csrf = '' + req.session.csrf;
-    var name = "Juragan";
+    var metaTag = {
+      title: data.meta_data.title,
+      description: data.meta_data.description,
+      canonical: data.meta_data.canonical
+    };
+    var name = "Testing";
     var markup = _server2.default.renderToString(_react2.default.createElement(
       _reactRouterDom.StaticRouter,
       { location: req.url, context: context },
       _react2.default.createElement(
         _reactRedux.Provider,
         { store: _store.store },
+        _react2.default.createElement(
+          _reactHelmet.Helmet,
+          null,
+          _react2.default.createElement('meta', { charSet: 'utf-8' }),
+          _react2.default.createElement(
+            'title',
+            null,
+            'My Title'
+          ),
+          _react2.default.createElement('link', { rel: 'canonical', href: 'http://mysite.com/example' })
+        ),
         _react2.default.createElement(_App2.default, {
           name: name,
           _csrf: _csrf
         })
       )
     ));
-    res.send('\n    <!DOCTYPE html>\n    <html lang="id">\n        <head>\n            <title>SSR With React Router</title>\n            <script src="/bundle.js" defer></script>\n\n        </head>\n        <body>\n            <div id="app">' + markup + '</div>\n            <script>window.___INITIAL_DATA___ = ' + (0, _serializeJavascript2.default)({ name: name, _csrf: _csrf }) + '</script>\n        </body>\n    </html>\n  \n  ');
+    res.send('\n    <!DOCTYPE html>\n    <html lang="id">\n        <head>\n            <title>' + metaTag.title + '</title>\n            <meta charSet="UTF-8"/>\n            <meta http-equiv="content-security-policy|content-type|default-style|refresh" content="30"/>\n            <meta http-equiv="" v="X-UA-Compatible" content="IE=edge"/>\n            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>\n            <meta name="keywords" content="' + metaTag.keywords + '"/>\n            <meta name="description" content="' + metaTag.description + '"/>\n            <meta name="mobile-web-app-capable" content="yes"/>\n            <meta name="apple-mobile-web-app-capable" content="yes"/>\n            <meta name="apple-mobile-web-app-status-bar-style" content="black"/>\n\n            <meta name="robots" content="index,follow"/>\n            <meta name="googlebot" content="index,follow"/>\n            <meta name="googlebot-news" content="index,follow"/>\n            <link rel="canonical" href="' + metaTag.canonical + '">\n            <script src="/bundle.js" defer></script>\n        </head>\n        <body>\n            <div id="app">' + markup + '</div>\n            <script>window.___INITIAL_DATA___ = ' + (0, _serializeJavascript2.default)({ name: name, _csrf: _csrf }) + '</script>\n        </body>\n    </html>\n  \n  ');
   }).catch(next);
 });
 
@@ -309,25 +533,25 @@ app.listen(4000, function () {
 });
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = require("express");
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = require("cors");
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom/server");
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -343,19 +567,33 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(1);
+var _reactRedux = __webpack_require__(2);
 
-var _axios = __webpack_require__(2);
+var _axios = __webpack_require__(3);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _ScrollToTop = __webpack_require__(12);
+var _ScrollToTop = __webpack_require__(14);
 
 var _ScrollToTop2 = _interopRequireDefault(_ScrollToTop);
 
-var _TheLayout = __webpack_require__(13);
+var _TheLayout = __webpack_require__(16);
 
 var _TheLayout2 = _interopRequireDefault(_TheLayout);
+
+var _reactRouterDom = __webpack_require__(1);
+
+var _routes = __webpack_require__(7);
+
+var _routes2 = _interopRequireDefault(_routes);
+
+var _PrivateRoute = __webpack_require__(20);
+
+var _PrivateRoute2 = _interopRequireDefault(_PrivateRoute);
+
+var _NotMatch = __webpack_require__(4);
+
+var _NotMatch2 = _interopRequireDefault(_NotMatch);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -386,12 +624,16 @@ var App = function App(_ref) {
     });
   };
   return _react2.default.createElement(
-    'div',
+    _react2.default.Fragment,
     null,
     _react2.default.createElement(
       _ScrollToTop2.default,
       null,
-      _react2.default.createElement(_TheLayout2.default, null)
+      _react2.default.createElement(
+        _reactRouterDom.Route,
+        { path: '/' },
+        _react2.default.createElement(_TheLayout2.default, null)
+      )
     )
   );
 };
@@ -404,7 +646,7 @@ var mapStateToProps = function mapStateToProps(state) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, {})(App);
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -420,9 +662,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(3);
+var _reactRouterDom = __webpack_require__(1);
 
-var _propTypes = __webpack_require__(4);
+var _propTypes = __webpack_require__(15);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -473,197 +715,10 @@ ScrollToTop.propTypes = {
 exports.default = (0, _reactRouterDom.withRouter)(ScrollToTop);
 
 /***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _routes = __webpack_require__(5);
-
-var _routes2 = _interopRequireDefault(_routes);
-
-var _reactRouterDom = __webpack_require__(3);
-
-var _reactRedux = __webpack_require__(1);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _Topbar = __webpack_require__(17);
-
-var _Topbar2 = _interopRequireDefault(_Topbar);
-
-var _PrivateRoute = __webpack_require__(18);
-
-var _PrivateRoute2 = _interopRequireDefault(_PrivateRoute);
-
-var _NotMatch = __webpack_require__(19);
-
-var _NotMatch2 = _interopRequireDefault(_NotMatch);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var TheLayout = function TheLayout(_ref) {
-  var auth = _ref.auth;
-
-  return _react2.default.createElement(
-    'div',
-    null,
-    auth.isAuthenticated && _react2.default.createElement(_Topbar2.default, null),
-    _react2.default.createElement(
-      _reactRouterDom.Switch,
-      null,
-      _routes2.default.map(function (_ref2) {
-        var path = _ref2.path,
-            exact = _ref2.exact,
-            C = _ref2.component,
-            rest = _ref2.rest,
-            isAuth = _ref2.isAuth;
-        return !isAuth ? _react2.default.createElement(_reactRouterDom.Route, { key: path, path: path, exact: exact, render: function render(props) {
-            return _react2.default.createElement(C, _extends({}, props, rest));
-          } }) : _react2.default.createElement(_PrivateRoute2.default, { key: path, path: path, exact: exact, component: C });
-      }),
-      _react2.default.createElement(_reactRouterDom.Route, { component: _NotMatch2.default })
-    )
-  );
-};
-
-TheLayout.propTypes = {};
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    auth: state.auth
-  };
-};
-exports.default = (0, _reactRedux.connect)(mapStateToProps, {})(TheLayout);
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _axios = __webpack_require__(2);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var Home = function Home(props) {
-  var _useState = (0, _react.useState)({}),
-      _useState2 = _slicedToArray(_useState, 2),
-      data = _useState2[0],
-      setData = _useState2[1];
-
-  var _useState3 = (0, _react.useState)({
-    nama_lengkap: ''
-  }),
-      _useState4 = _slicedToArray(_useState3, 2),
-      formdata = _useState4[0],
-      setFormdata = _useState4[1];
-
-  var handleChange = function handleChange(e) {
-    return setFormdata(_defineProperty({ formdata: formdata }, e.target.name, e.target.value));
-  };
-  var handleSubmit = function handleSubmit(e) {
-    e.preventDefault();
-    _axios2.default.post('http://localhost:4000/advanced', {
-      nama_lengkap: formdata.nama_lengkap
-    }, { headers: {
-        "Content-Types": "application/json"
-      } }).then(function (res) {
-      setData(res.data);
-    }).catch(function (err) {
-      console.log(err);
-    });
-  };
-
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(
-      'div',
-      null,
-      _react2.default.createElement(
-        'form',
-        { onSubmit: handleSubmit },
-        _react2.default.createElement('input', { type: 'text', name: 'nama_lengkap', onChange: handleChange }),
-        _react2.default.createElement(
-          'button',
-          { type: 'submit' },
-          'Submit'
-        )
-      )
-    ),
-    Object.keys(data).length > 0 && data.data.map(function (item, index) {
-      return _react2.default.createElement(
-        'p',
-        { key: index },
-        ' ',
-        item.nama_lengkap
-      );
-    })
-  );
-};
-Home.propTypes = {
-  // children: PropTypes.element.isRequired
-};
-exports.default = Home;
-
-/***/ }),
 /* 15 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Login = function Login() {
-  return _react2.default.createElement(
-    'h1',
-    null,
-    'Login'
-  );
-};
-
-exports.default = Login;
+module.exports = require("prop-types");
 
 /***/ }),
 /* 16 */
@@ -675,30 +730,71 @@ exports.default = Login;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getNIK = getNIK;
 
-var _axios = __webpack_require__(2);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _axios2 = _interopRequireDefault(_axios);
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(1);
+
+var _NotMatch = __webpack_require__(4);
+
+var _NotMatch2 = _interopRequireDefault(_NotMatch);
+
+var _Home = __webpack_require__(5);
+
+var _Home2 = _interopRequireDefault(_Home);
+
+var _Login = __webpack_require__(6);
+
+var _Login2 = _interopRequireDefault(_Login);
+
+var _routes = __webpack_require__(7);
+
+var _routes2 = _interopRequireDefault(_routes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function getNIK(_ref) {
-  var nik = _ref.nik;
+var TheLayout = function TheLayout() {
 
-
-  return _axios2.default.post('http://localhost:8000/ktp/profile', { nik: nik }, { headers: {
-      "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvbG9naW4iLCJpYXQiOjE2MTA0NDY4NjksImV4cCI6MTYxOTA4Njg2OSwibmJmIjoxNjEwNDQ2ODY5LCJqdGkiOiJ0ZE9MRXg5UlV4UThaN3JaIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.T-fZww9c0Nwxw7VAUNlxnxnOZFMQzkuHLGfGrIfLOcU"
-    } }).then(function (res) {
-    return res.data;
-  }).catch(function (err) {
-    console.warn(err);
-    return [];
-  });
-}
+  return _react2.default.createElement(
+    _react2.default.Fragment,
+    null,
+    _react2.default.createElement(
+      _reactRouterDom.Switch,
+      null,
+      _routes2.default.map(function (_ref) {
+        var path = _ref.path,
+            exact = _ref.exact,
+            C = _ref.component,
+            rest = _ref.rest,
+            isAuth = _ref.isAuth;
+        return _react2.default.createElement(_reactRouterDom.Route, { key: path, path: path, exact: exact, render: function render(props) {
+            return _react2.default.createElement(C, _extends({}, props, rest));
+          } });
+      }),
+      _react2.default.createElement(_reactRouterDom.Route, { component: _NotMatch2.default })
+    )
+  );
+};
+exports.default = TheLayout;
 
 /***/ }),
 /* 17 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-helmet");
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-router");
+
+/***/ }),
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -707,33 +803,36 @@ function getNIK(_ref) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.getNIK = getNIK;
 
-var _react = __webpack_require__(0);
+var _axios = __webpack_require__(3);
 
-var _react2 = _interopRequireDefault(_react);
+var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Topbar = function Topbar() {
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(
-      'div',
-      null,
-      _react2.default.createElement(
-        'h1',
-        null,
-        'Topbar'
-      )
-    )
-  );
-};
+function getNIK(_ref) {
+  var nik = _ref.nik;
 
-exports.default = Topbar;
+  try {
+
+    return new Promise(function (resolve) {
+      resolve({
+        data: {
+          nik: "12412412",
+          name: "John Doe"
+        }
+      });
+    });
+  } catch (err) {
+    return {
+      data: null
+    };
+  }
+}
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -749,9 +848,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(3);
+var _reactRouterDom = __webpack_require__(1);
 
-var _reactRedux = __webpack_require__(1);
+var _reactRedux = __webpack_require__(2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -779,80 +878,49 @@ var mapStateToProps = function mapStateToProps(state) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, {})(PrivateRoute);
 
 /***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var NotMatch = function NotMatch() {
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(
-      'h1',
-      null,
-      'Not Found'
-    )
-  );
-};
-
-exports.default = NotMatch;
-
-/***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports) {
 
 module.exports = require("csurf");
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports) {
 
 module.exports = require("express-session");
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 module.exports = require("body-parser");
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
 module.exports = require("cookie-parser");
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports) {
 
 module.exports = require("serialize-javascript");
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports) {
 
 module.exports = require("crypto");
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 module.exports = require("express-validator");
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -863,15 +931,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.store = undefined;
 
-var _redux = __webpack_require__(6);
+var _redux = __webpack_require__(8);
 
-var _reduxDevtoolsExtension = __webpack_require__(28);
+var _reduxDevtoolsExtension = __webpack_require__(29);
 
-var _reduxThunk = __webpack_require__(29);
+var _reduxThunk = __webpack_require__(30);
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-var _reducers = __webpack_require__(30);
+var _reducers = __webpack_require__(31);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -881,19 +949,19 @@ var middleware = [_reduxThunk2.default];
 var store = exports.store = (0, _redux.createStore)(_reducers.rootReducer, initialState, (0, _reduxDevtoolsExtension.composeWithDevTools)(_redux.applyMiddleware.apply(undefined, middleware)));
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports) {
 
 module.exports = require("redux-devtools-extension");
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports) {
 
 module.exports = require("redux-thunk");
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -904,9 +972,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.rootReducer = undefined;
 
-var _redux = __webpack_require__(6);
+var _redux = __webpack_require__(8);
 
-var _auth = __webpack_require__(31);
+var _auth = __webpack_require__(32);
 
 var _auth2 = _interopRequireDefault(_auth);
 
@@ -917,7 +985,7 @@ var rootReducer = exports.rootReducer = (0, _redux.combineReducers)({
 });
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -951,6 +1019,21 @@ var initialState = {
   loading: true,
   msg: false
 };
+
+if (typeof window !== "undefined") {
+  // browser code
+  if (typeof window.localStorage !== 'undefined' && window.localStorage.getItem('token')) {
+    initialState.isAuthenticated = true;
+  } else {
+    initialState.isAuthenticated = false;
+  }
+}
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports) {
+
+module.exports = require("concurrently");
 
 /***/ })
 /******/ ]);
